@@ -20,23 +20,3 @@ def won?(board)
     board[win_combo[0]] == board[win_combo[1]] && board[win_combo[0]] == board[win_combo[2]] && position_taken?(board, win_combo[1])
   end
 end
-
-def full?(board)
-  board.none? do |i|
-    i == " " || i.nil?
-  end
-end
-
-def draw?(board)
-  won?(board) == nil && full?(board) == true
-end
-
-def over?(board)
-  draw?(board) == true || won?(board) != nil
-end
-
-def winner(board)
-  if won?(board) != nil
-    winner = board[won?(board)[0]]
-  end
-end
