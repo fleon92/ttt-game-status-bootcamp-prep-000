@@ -37,26 +37,22 @@ WIN_COMBINATIONS = [
     return false
   end
   
-  def full?(board)
-   if board.any?{|i| i == "" || i == " " || i == nil}
-     return false
-   else
-     return true
-   end
+def full?(board)
+  board.none? do |i|
+    i == " " || i.nil?
   end
-  
-  def draw?(board)
-    if won?(board) == false && full?(board) == true
-      return true
-    else
-      return false
-    end
-  end
-  
+end
+
+def draw?(board)
+  won?(board) == nil && full?(board) == true
+end
+
 def over?(board)
-  if draw?(board) == true || won?(board) != nil
-    return true
-  else
-    return false
+  draw?(board) == true || won?(board) != nil
+end
+
+def winner(board)
+  if won?(board) != nil
+    winner = board[won?(board)[0]]
   end
 end
