@@ -15,48 +15,28 @@ WIN_COMBINATIONS = [
   [2,5,8]
   ]
   
-  def won?(board)
-    WIN_COMBINATIONS.each do |win|
-      win_index_1 = win[0]
-      win_index_2 = win[1]
-      win_index_3 = win[2]
-      
-      position_1 = board[win_index_1]
-      position_2 = board[win_index_2]
-      position_3 = board[win_index_3]
-      
-      if position_1 == "X" && 
-         position_2 == "X" &&
-         position_3 == "X" ||
-         position_1 == "O" && 
-         position_2 == "O" &&
-         position_3 == "O"
-            return win
-      end
-    end
-    return false
+def won?(board)
+  WIN_COMBINATIONS.find do |win_combo|
+    board[win_combo[0]] == board[win_combo[1]] && board[win_combo[0]] == board[win_combo[2]] && position_taken?(board, win_combo[1])
   end
-  
-  def full?(board)
-   if board.any?{|i| i == "" || i == " " || i == nil}
-     return false
-   else
-     return true
-   end
+end
+
+def full?(board)
+  board.none? do |i|
+    i == " " || i.nil?
   end
-  
-  def draw?(board)
-    if won?(board) == false && full?(board) == true
-      return true
-    else
-      return false
-    end
-  end
-  
+end
+
+def draw?(board)
+  won?(board) == nil && full?(board) == true
+end
+
 def over?(board)
-  if draw?(board) == true || won?(board) != nil
-    return true
-  else
-    return false
+  draw?(board) == true || won?(board) != nil
+end
+
+def winner(board)
+  if won?(board) != nil
+    winner = board[won?(board)[0]]
   end
 end
