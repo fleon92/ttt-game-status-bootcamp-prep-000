@@ -19,6 +19,7 @@ WIN_COMBINATIONS = [
     WIN_COMBINATIONS.each find do |win|
     board[win[0] == win[1] && win[0] == win[2] && position_taken(board, win[1])]
   end
+  end
   
   def full?(board)
    board.none?{|i| i == "" || i == " " || i == nil}
