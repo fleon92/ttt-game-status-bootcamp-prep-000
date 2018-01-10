@@ -22,3 +22,6 @@ def won?(board)
     position_taken?(board,win_combo[1])
   end
 end
+
+def full?(board)
+  board.none? {|i| 
