@@ -38,11 +38,7 @@ WIN_COMBINATIONS = [
   end
   
   def full?(board)
-   if board.any?{|i| i == "" || i == " " || i == nil}
-     return false
-   else
-     return true
-   end
+   board.none?{|i| i == "" || i == " " || i == nil}
   end
   
   def draw?(board)
