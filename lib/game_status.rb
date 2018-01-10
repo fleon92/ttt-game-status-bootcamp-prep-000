@@ -1,7 +1,7 @@
 # Helper Method
-  def position_taken?(board, index)
-    !(board[index].nil? || @board[index] == " ")
-  end
+def position_taken?(board, index)
+  !(board[index].nil? || board[index] == " ")
+end
 
 # Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
@@ -15,20 +15,48 @@ WIN_COMBINATIONS = [
   [2,5,8]
   ]
   
-def won?(board)
-  WIN_COMBINATIONS.find do |win_combo|
-    board[win_combo[0]] == board[win_combo[1]] && board[win_combo[0]] == board[win_combo[2]] && position_taken?(board, win_combo[1])
+  def won?(board)
+    WIN_COMBINATIONS.each do |win|
+      win_index_1 = win[0]
+      win_index_2 = win[1]
+      win_index_3 = win[2]
+      
+      position_1 = board[win_index_1]
+      position_2 = board[win_index_2]
+      position_3 = board[win_index_3]
+      
+      if position_1 == "X" && 
+         position_2 == "X" &&
+         position_3 == "X" ||
+         position_1 == "O" && 
+         position_2 == "O" &&
+         position_3 == "O"
+            return win
+      end
+    end
+    return false
   end
-end
-
+  
   def full?(board)
-   board.none?{|i| i == "" || i == " " || i == nil}
+   if board.any?{|i| i == "" || i == " " || i == nil}
+     return false
+   else
+     return true
+   end
   end
   
   def draw?(board)
-    won?(board) != nil && full?(board) == true
+    if won?(board) == false && full?(board) == true
+      return true
+    else
+      return false
+    end
   end
   
 def over?(board)
-  draw?(board) == true || won?(board) != nil
+  if draw?(board) == true || won?(board) != nil
+    return true
+  else
+    return false
+  end
 end
