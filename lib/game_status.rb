@@ -15,10 +15,16 @@ WIN_COMBINATIONS = [
   [2,5,8]
   ]
   
-  def won?(board)
+  def won?
     WIN_COMBINATIONS.each find do |win_combo|
-    board[win_combo[0] == win_combo[1] && win_combo[0] == win_combo[2] && position_taken?(board, win[1])]
+    @board[win_combo[0] == @[win_combo[1]] && @board[win_combo[0]] == @board[win_combo[2]] && position_taken?(win_combo[1])]
+   end
   end
+  
+    def won?
+    WIN_COMBINATIONS.find do |win_combo|
+      @board[win_combo[0]] == @board[win_combo[1]] && @board[win_combo[0]] == @board[win_combo[2]] && position_taken?(win_combo[1])
+    end
   end
   
   def full?(board)
