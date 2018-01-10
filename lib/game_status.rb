@@ -34,3 +34,6 @@ end
 def over?(board)
   won?(board) != nil || draw?(board) == true
 end
+
+def winner(board)
+  
